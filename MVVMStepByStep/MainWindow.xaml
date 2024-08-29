@@ -4,19 +4,22 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:MVVMStepByStep"
+        xmlns:data="clr-namespace:Customer.ViewModel;assembly=Customer.ViewModel"
         mc:Ignorable="d"
-        Loaded="Window_Loaded"
         Title="MainWindow" Height="450" Width="411">
+    <Window.Resources>
+        <data:CustomerViewModel x:Key="customer" TxtCustomerName="wangbi" TxtAmount="2600"/>
+    </Window.Resources>
     <Grid>
         <StackPanel>
             <Label>Customer Name</Label>
-            <TextBox Name="lblName"></TextBox>
+            <TextBox Name="lblName" Text="{Binding TxtCustomerName, Source={StaticResource customer}}"></TextBox>
             <Label>Sales Amount</Label>
-            <TextBox Name="lblAmount"></TextBox>
+            <TextBox Name="lblAmount" Text="{Binding TxtAmount, Source={StaticResource customer}}"></TextBox>
             <Label>Buying Habits</Label>
-            <Label Name="lblBuyingHabits" Background="Red" Height="50"></Label>
+            <Label Name="lblBuyingHabits" Background="{Binding LblAmountColor, Mode=OneWay, Source={StaticResource customer}}" Height="50"></Label>
             <Label>Married</Label>
-            <CheckBox Name="chkMarried"></CheckBox>
+            <CheckBox Name="chkMarried" IsChecked="{Binding IsMarried, Mode=OneWay, Source={StaticResource customer}}"></CheckBox>
         </StackPanel>
     </Grid>
 </Window>

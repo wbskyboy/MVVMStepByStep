@@ -25,22 +25,5 @@ namespace MVVMStepByStep
         {
             InitializeComponent();
         }
-
-
-        public CustomerViewModel customer = new CustomerViewModel();
-
-        private void DisplayUi(CustomerViewModel o)
-        {
-            lblName.Text = o.TxtCustomerName;
-            lblAmount.Text = o.TxtAmount;
-            BrushConverter brushconv = new BrushConverter();
-            lblBuyingHabits.Background = brushconv.ConvertFromString(o.LblAmountColor) as SolidColorBrush;
-            chkMarried.IsChecked = o.IsMarried;
-        }
-
-        private void Window_Loaded(object sender, RoutedEventArgs e)
-        {
-            DisplayUi(customer);
-        }
     }
 }
