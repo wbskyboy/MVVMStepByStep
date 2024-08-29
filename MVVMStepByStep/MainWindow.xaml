@@ -5,8 +5,18 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:MVVMStepByStep"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
+        Loaded="Window_Loaded"
+        Title="MainWindow" Height="450" Width="411">
     <Grid>
-        
+        <StackPanel>
+            <Label>Customer Name</Label>
+            <TextBox Name="lblName"></TextBox>
+            <Label>Sales Amount</Label>
+            <TextBox Name="lblAmount"></TextBox>
+            <Label>Buying Habits</Label>
+            <Label Name="lblBuyingHabits" Background="Red" Height="50"></Label>
+            <Label>Married</Label>
+            <CheckBox Name="chkMarried"></CheckBox>
+        </StackPanel>
     </Grid>
 </Window>
