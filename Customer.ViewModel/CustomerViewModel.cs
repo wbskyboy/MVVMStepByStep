@@ -1,13 +1,20 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Input;
 
 namespace Customer.ViewModel
 {
-    public class CustomerViewModel
+    public class CustomerViewModel : INotifyPropertyChanged // Point 1
     {
+        public CustomerViewModel()
+        {
+            objCommand = new ButtonCommand(this); // Point 2
+        }
+
         private Customer.Model.Customer obj = new Model.Customer();
 
         public string TxtCustomerName
@@ -20,6 +27,11 @@ namespace Customer.ViewModel
         {
             get { return Convert.ToString(obj.Amount); }
             set { obj.Amount = Convert.ToDouble(value); }
+        }
+
+        public string Tax
+        {
+            get { return Convert.ToString(obj.Tax); }
         }
 
 
@@ -53,5 +65,28 @@ namespace Customer.ViewModel
                 }
             }
         }
+
+
+        private ButtonCommand objCommand; //  Point 1
+
+        public ICommand btnClick // Point 3
+        {
+            get
+            {
+                return objCommand;
+            }
+        }
+
+        public void Calculate()
+        {
+            obj.CalculateTax();
+            if (PropertyChanged != null) // Point 2
+            {
+                PropertyChanged(this, new PropertyChangedEventArgs("Tax"));
+                // Point 3
+            }
+        }
+
+        public event PropertyChangedEventHandler PropertyChanged;
     }
 }

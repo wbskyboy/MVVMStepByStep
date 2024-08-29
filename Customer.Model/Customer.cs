@@ -19,5 +19,27 @@ namespace Customer.Model
         public double Amount { get; set; }
 
         public string Married { get; set; }
+
+        private double _Tax;
+        public double Tax
+        {
+            get { return _Tax; }
+        }
+
+        public void CalculateTax()
+        {
+            if (Amount > 2000)
+            {
+                _Tax = 20;
+            }
+            else if (Amount > 1000)
+            {
+                _Tax = 10;
+            }
+            else
+            {
+                _Tax = 5;
+            }
+        }
     }
 }

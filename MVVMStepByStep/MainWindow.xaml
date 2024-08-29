@@ -13,13 +13,16 @@
     <Grid>
         <StackPanel>
             <Label>Customer Name</Label>
-            <TextBox Name="lblName" Text="{Binding TxtCustomerName, Source={StaticResource customer}}"></TextBox>
+            <TextBox Text="{Binding TxtCustomerName, Source={StaticResource customer}}"></TextBox>
             <Label>Sales Amount</Label>
-            <TextBox Name="lblAmount" Text="{Binding TxtAmount, Source={StaticResource customer}}"></TextBox>
+            <TextBox Text="{Binding TxtAmount, Source={StaticResource customer}}"></TextBox>
             <Label>Buying Habits</Label>
-            <Label Name="lblBuyingHabits" Background="{Binding LblAmountColor, Mode=OneWay, Source={StaticResource customer}}" Height="50"></Label>
+            <Label Background="{Binding LblAmountColor, Mode=OneWay, Source={StaticResource customer}}" Height="50"></Label>
+            <Label>Tax</Label>
+            <Label Height="20" Content="{Binding Tax, Mode=OneWay, Source={StaticResource customer}}"/>
             <Label>Married</Label>
-            <CheckBox Name="chkMarried" IsChecked="{Binding IsMarried, Mode=OneWay, Source={StaticResource customer}}"></CheckBox>
+            <CheckBox IsChecked="{Binding IsMarried, Mode=OneWay, Source={StaticResource customer}}"></CheckBox>
+            <Button Height="20" Command="{Binding btnClick, Mode=OneWay, Source={StaticResource customer}}">Calculate Tax</Button>
         </StackPanel>
     </Grid>
 </Window>
