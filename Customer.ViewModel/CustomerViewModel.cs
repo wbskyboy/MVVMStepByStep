@@ -12,7 +12,7 @@ namespace Customer.ViewModel
     {
         public CustomerViewModel()
         {
-            objCommand = new ButtonCommand(this); // Point 2
+            objCommand = new ButtonCommand(Calculate, obj.IsValid); // Point 2
         }
 
         private Customer.Model.Customer obj = new Model.Customer();
@@ -26,7 +26,14 @@ namespace Customer.ViewModel
         public string TxtAmount
         {
             get { return Convert.ToString(obj.Amount); }
-            set { obj.Amount = Convert.ToDouble(value); }
+            set { 
+                obj.Amount = Convert.ToDouble(value);
+                if (PropertyChanged != null) // Point 2
+                {
+                    PropertyChanged(this, new PropertyChangedEventArgs("LblAmountColor"));
+                    // Point 3
+                }
+            }
         }
 
         public string Tax
@@ -43,7 +50,7 @@ namespace Customer.ViewModel
                 {
                     return "Blue";
                 }
-                else if (obj.Amount > 1500)
+                else if (obj.Amount > 1000)
                 {
                     return "Red";
                 }

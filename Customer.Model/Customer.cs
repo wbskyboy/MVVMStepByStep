@@ -41,5 +41,17 @@ namespace Customer.Model
                 _Tax = 5;
             }
         }
+
+        public bool IsValid()
+        {
+            if (Amount == 0)
+            {
+                return false;
+            }
+            else
+            {
+                return true;
+            }
+        }
     }
 }

@@ -9,21 +9,23 @@ namespace Customer.ViewModel
 {
     public class ButtonCommand : ICommand
     {
-        private CustomerViewModel obj; // Point 1
-        public ButtonCommand(CustomerViewModel _obj) // Point 2
+        private Action WhattoExecute;
+        private Func<bool> WhentoExecute;
+        public ButtonCommand(Action What, Func<bool> When) // Point 1
         {
-            obj = _obj;
+            WhattoExecute = What;
+            WhentoExecute = When;
         }
 
         public event EventHandler CanExecuteChanged;
 
         public bool CanExecute(object parameter)
         {
-            return true; // Point 3
+            return WhentoExecute(); // Point 2
         }
         public void Execute(object parameter)
         {
-            obj.Calculate(); // Point 4
+            WhattoExecute(); // Point 3
         }
     }
 }
