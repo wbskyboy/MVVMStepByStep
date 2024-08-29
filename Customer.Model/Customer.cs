@@ -11,12 +11,12 @@ namespace Customer.Model
         public Customer()
         {
             Name = "ShiV";
-            Amount = 200;
+            Amount = 2500;
             Married = "Married";
         }
         public string Name { get; set; }
 
-        public int Amount { get; set; }
+        public double Amount { get; set; }
 
         public string Married { get; set; }
     }

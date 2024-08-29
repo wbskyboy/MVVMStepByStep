@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Customer.ViewModel;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -26,37 +27,20 @@ namespace MVVMStepByStep
         }
 
 
-        public Customer.Model.Customer customer = new Customer.Model.Customer();
-        /// <summary>
-        /// Behind code is here
-        /// </summary>
-        private void ConversionAndMappingLogic()
+        public CustomerViewModel customer = new CustomerViewModel();
+
+        private void DisplayUi(CustomerViewModel o)
         {
-            lblName.Text = customer.Name; // mapping code
-            lblAmount.Text = customer.Amount.ToString(); // mapping code
-
-            if (customer.Amount > 2000) // transformation code
-            {
-                lblBuyingHabits.Background = new SolidColorBrush(Colors.Blue);
-            }
-            else if (customer.Amount > 1500) // transformation code
-            {
-                lblBuyingHabits.Background = new SolidColorBrush(Colors.Red);
-            }
-
-            if (customer.Married == "Married") // transformation code
-            {
-                chkMarried.IsChecked = true;
-            }
-            else
-            {
-                chkMarried.IsChecked = false;
-            }
+            lblName.Text = o.TxtCustomerName;
+            lblAmount.Text = o.TxtAmount;
+            BrushConverter brushconv = new BrushConverter();
+            lblBuyingHabits.Background = brushconv.ConvertFromString(o.LblAmountColor) as SolidColorBrush;
+            chkMarried.IsChecked = o.IsMarried;
         }
 
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
-            ConversionAndMappingLogic();
+            DisplayUi(customer);
         }
     }
 }
